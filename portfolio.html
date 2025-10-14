@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chaitanya Bagul | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .glass { background: rgba(255,255,255, .07); backdrop-filter: blur(14px); border: 1.5px solid rgba(255,255,255,0.12);}
+    .avatar {
+      width: 124px;   /* Increased from 84px */
+      height: 124px;  /* Increased from 84px */
+      object-fit: cover;
+      border-radius: 9999px;
+      border: 3px solid #60a5fa;
+      box-shadow: 0 2px 16px rgba(37,99,235,0.2);
+      margin-right: 24px; /* Slightly increased margin */
+      z-index: -4;
+    }
+    .tooltip {
+      position: absolute;
+      left: 105%; top: 50%; transform: translateY(-50%);
+      min-width: 260px;
+      z-index: 0;
+      background: rgba(30, 41, 59, 0.98);
+      border-radius: 1rem;
+      box-shadow: 0 2px 14px rgba(10,20,54,0.18);
+      color: #f0f4f9;
+      padding: 1.1rem 1.1rem 1rem 1.1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.33s;
+      font-size: 0.97rem;
+      font-family: inherit;
+      border: 1.2px solid #334155;
+    }
+    .project-title:hover + .tooltip, .project-title:focus + .tooltip, .tooltip:hover {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) scale(1.04);
+      z-index: 10000;
+    }
+    .github-btn {
+      background: linear-gradient(90deg,#2563eb 60%,#38bdf8 100%);
+      border-radius: 0.6rem;
+      padding: .3rem .7rem .3rem .65rem;
+      color: #fff;
+      font-weight: 500;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 0.97rem;
+      margin-top: 0.6rem;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.18);
+      transition: background 0.18s;
+      text-decoration: none;
+      z-index: 10000;
+    }
+    .github-btn:hover {
+      background: linear-gradient(90deg,#1e293b 70%,#1d4ed8 100%);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(17,24,39,0.18);
+      z-index: 10000;
+    }
+    @media (max-width:640px){
+      .tooltip { left: 0; top: 105%; min-width: 95vw;}
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-gray-200 font-sans min-h-screen">
+
+  <!-- Navbar with Profile Picture -->
+  <header class="fixed w-full z-50 glass text-gray-200 shadow-lg">
+    <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <!-- UPLOAD YOUR PROFILE PICTURE BELOW! Replace 'profile.jpg' with your filename and place image in the same folder -->
+        <img src="F:\Projects\portfolio\profile_pic.JPEG" alt="Profile" class="avatar"/>
+        <h1 class="text-2xl font-bold text-blue-400 tracking-wide">Chaitanya Bagul</h1>
+      </div>
+      <ul class="flex space-x-6 text-sm font-medium">
+        <li><a href="#about" class="hover:text-blue-400">About</a></li>
+        <li><a href="#projects" class="hover:text-blue-400">Projects</a></li>
+        <li><a href="#work" class="hover:text-blue-400">Work Exp</a></li>
+        <li><a href="#skills" class="hover:text-blue-400">Skills</a></li>
+        <li><a href="#current" class="hover:text-blue-400">Current</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Advanced -->
+  <section id="hero" class="h-screen flex flex-col justify-center items-center text-center px-4">
+    <h2 class="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-sm">Hi, I'm <span class="text-blue-400">Chaitanya</span></h2>
+    <p class="text-lg md:text-xl max-w-xl text-gray-300 font-medium">
+      <span class="text-blue-400">Generative AI Engineer</span> & Data Scientist building intelligent, scalable systems that combine NLP, ML, and Deep Learning.
+    </p>
+    <a href="#about" class="mt-8 inline-block px-7 py-3 bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-700 hover:to-sky-600 rounded-full text-white font-semibold shadow-lg transition">Explore More ↓</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="min-h-screen flex flex-col justify-center px-6 md:px-16 py-16">
+    <h3 class="text-3xl font-semibold text-blue-400 mb-6">About Me</h3>
+    <p class="text-gray-300 leading-relaxed max-w-3xl text-lg">
+        I am an experienced <b>Machine Learning Engineer</b> with 3 years in the AI industry, specializing in delivering scalable models and intelligent automation solutions that <b>drive real-world impact</b>.
+        I have deep expertise in <b>deep learning, Retrieval-Augmented Generation (RAG) systems, and healthcare data applications</b>.
+        I create solutions that effectively bridge structured and unstructured data to generate actionable insights and improve business and clinical outcomes.
+        Continuously driven by innovation, I <b>enjoy building automation pipelines</b> and exploring <b>advanced machine learning architectures</b> to solve complex problems.
+    </p>
+  </section>
+
+  <!-- Projects Section - Advanced Cards with Tooltip on Title -->
+  <section id="projects" class="min-h-screen px-6 md:px-16 py-16 bg-gradient-to-t from-gray-900 to-slate-900">
+    <h3 class="text-3xl font-semibold text-blue-400 mb-10">Featured Projects</h3>
+    <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-2 gap-20"></div>
+  </section>
+
+  <!-- Work Experience -->
+  <section id="work" class="min-h-screen px-6 md:px-16 py-16">
+    <h3 class="text-3xl font-semibold text-blue-400 mb-10">Work Experience</h3>
+    <div id="work-exp-list" class="space-y-8"></div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="min-h-screen px-6 md:px-16 py-16 bg-gradient-to-b from-gray-900 to-slate-900">
+    <h3 class="text-3xl font-semibold text-blue-400 mb-10">Skills</h3>
+    <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+  </section>
+
+  <!-- Current Work Section -->
+  <section id="current" class="min-h-screen px-6 md:px-16 py-16">
+    <h3 class="text-3xl font-semibold text-blue-400 mb-6">What I'm Working On</h3>
+    <div class="glass p-6 rounded-2xl max-w-4xl">
+      <p class="text-gray-300 leading-relaxed">
+        Currently developing a <b>multi-agent system</b> integrating <b>Ollama LLMs</b> and <b>ChromaDB</b> for contextual data retrieval,
+        enabling hybrid query answering over speech, text, and document datasets.
+        Working on optimizing agent communication, memory, and retrieval relevance for enterprise-scale deployments.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-700">
+    © 2025 Chaitanya Bagul. Built with using Tailwind CSS.
+  </footer>
+
+  <!-- Interactive Script -->
+  <script>
+    // Featured GitHub Project Links (replace these with your actual repo URLs)
+    const githubLinks = [
+      "https://github.com/elderflamevandle/Hierarchical_Text_Classification_BERT",
+      "https://github.com/elderflamevandle/MLPipeline-Multi-Agent-System",
+      "https://github.com/elderflamevandle/Llama2_multi_csv_chat",
+      "https://github.com/elderflamevandle/coal-market-trends-analyzer",
+      "https://github.com/elderflamevandle/FlightPricePrediction",
+      "https://github.com/elderflamevandle/Reinforcement-Enhanced-Emotion-Classification",
+      "https://github.com/elderflamevandle/Customer-Segmentation",
+      "https://github.com/elderflamevandle/EDA-Covid-19-India-Statewise-Analysis"
+    ];
+    // Projects Data
+    const projects = [
+      { title: "Hierarchical_Text_Classification_BERT", desc: "This project implements a hierarchical text classification model for product reviews using BERT. It classifies reviews into three levels of categories (Cat1, Cat2, Cat3) based on the review text." },
+      { title: "MLPipeline Multi Agent System", desc: "This repository contains a Python script for a machine learning pipeline that utilizes multi-agent collaboration to perform classification and regression tasks on datasets." },
+      { title: "Multi CSV Chat App", desc: "The MultiCSV Chat App is a Python application that allows you to chat with multiple CSV documents for World Happiness Dataset from year 2015- 2019. You can ask questions about the CSVs using natural language, and the application will provide relevant responses based on the content of the documents." },
+      { title: "Coal Market Trends Analyzer", desc: "This project implements an advanced LLM query processing system that combines document analysis and news retrieval to provide comprehensive insights for procurement strategies using Generative AI." },
+      { title: "Flight Fare Price Prediction", desc: " Flight Price prediction with the help of Regression models in ML." },
+      { title: "Reinforcement Enhanced Emotion Classification", desc: "Reinforcement Learning used along with traditional Machine Learning to classify emotions in person with the help of images." },
+      { title: "Cusomter Segmentation", desc: "Customer Segmentation using ML models to analyze purchase behavior, cluster products and customers, and classify customer groups. Enables targeted marketing and personalized experiences to improve business outcomes and customer satisfaction." },
+      { title: "EDA - Covid 19 India State Wise Analysis", desc: "EDA on Covid data based on India Region." }
+    ];
+
+    // Work Experience Data
+    const workExp = [
+      {
+        company: "Tesco Private Limited",
+        role: "Decision Scientist", duration: "Sept 2024 - Jul 2025",
+        bullets: ["Applied generative AI techniques using OpenAI, Falcon, llamaparse, and Langchain to develop a solution within the MUMS tool that matched Tesco products with competitor offerings, achieving 80% recall and supporting effective price optimization",
+        "Designed and implemented a multiclass text classification model leveraging BERT embeddings and machine learning algorithms to categorize UK customer reviews with 90% accuracy, showcasing robust experimental design and statistical data analysis skills.",
+        "Developed and deployed Python scripts utilizing xlwings to streamline ETL processes for over 50 financial reports, decreasing reporting errors by 35% and conserving 10 hours per report."]
+      },
+
+      {
+        company: "Scikiq Data Private Limited",
+        role: "Associate Data Scientist", duration: "Jan 2024 - May 2024",
+        bullets: [
+          "Built a multimodal Retrieval-Augmented Generation (RAG) system on PDFs, implementing efficient document retrieval mechanisms that reduced LLM hallucination rates by 7% and improved recall of relevant documents by 10%.",
+          "Engineered fully automated AI pipeline utilizing agentic system function calls, enabling end-to-end data collection, preprocessing, model building with AutoML and model hosting over S3 bucket; increased accuracy by an average of 10%.",
+          "Devised a novel fine-tuning approach using LoRA and QLoRA for LLMs, processing over 12,000 samples, leading to a 25% increase in accuracy and edge-friendly model deployment.",
+          "Clustered ECG Signals into respective morphologies using DB-SCAN Clustering while implementing a custom tracking method, to limit clusters and images within each cluster that gave more than 95% accuracy"
+        ]
+      },
+
+      {
+        company: "Innominds Software Private Limited",
+        role: "Jr Data Scientist", duration: "Jun 2022 – Jan 2024",
+        bullets: [
+          "Collaborated with the ECG analytics team, executed data preprocessing to eliminate noise from ECG signals, improving data qualityscores by 25% and aiding efficient analysis.", 
+          "Achieved accuracy of over 90% on test data and 70% -80% on unseen data using 1D ECG Signal Model with self-attention layers.",
+          "Attained a recall of Positive Class approximately close to 96% for Arrhythmia detection using Multi-modal fusion approach that combines three modified ECG images with unique feature to form 3 color channel image.",
+          ""
+        ]
+      }
+    ];
+
+    // Skills
+    const skills = [
+      "Python","LangChain","CrewAI","PyTorch","TensorFlow","Scikit-learn","Deep Learning","Machine Learning","NLP",
+      "Generative AI","ChromaDB","Qdrant","FAISS","OpenAI API","Ollama","Flask","FastAPI","AWS S3","AWS SageMaker",
+      "Pandas","NumPy","SQL","PyCaret","Hugging Face","Transformers","Data Preprocessing","Feature Engineering",
+      "Prompt Engineering","Streamlit","Git"
+    ];
+
+    // Project Cards - Advanced, Tooltip beside Title
+    const projectGrid = document.getElementById('project-grid');
+    projects.forEach((proj, idx) => {
+      const card = document.createElement('div');
+      card.className = 'glass p-7 rounded-3xl shadow-xl transition hover:scale-105 hover:shadow-2xl relative flex flex-col gap-3 items-start';
+      card.innerHTML = `
+         <div class="flex items-center relative mt-1">
+            <span tabindex="0" class="project-title text-white font-semibold text-lg inline-block cursor-pointer hover:text-blue-300 focus:outline-none">
+              ${proj.title}
+            </span>
+            <div class="tooltip" style="margin-left:8px;">
+              <div class="font-semibold text-blue-300 mb-1">${proj.title}</div>
+              <div class="mb-2 text-gray-200">${proj.desc}</div>
+              <a href="${githubLinks[idx]}" class="github-btn" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="22" height="22" class="mr-1" viewBox="0 0 24 24"><path d="M12,.297c-6.63,0-12,5.373-12,12,0,5.303,3.438,9.8,8.205,11.387.6,.113.82-.258.82-.577,0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.334-1.754-1.334-1.754-1.091-.746,.084-.729,.084-.729,1.205,.084,1.838,1.238,1.838,1.238,1.07,1.834,2.809,1.304,3.495.997.108-.776,.418-1.305,.762-1.606-2.665-.305-5.466-1.332-5.466-5.93,0-1.312.469-2.381,1.236-3.221-.124-.303-.535-1.527.117-3.176,0,0,1.008-.323,3.3,1.23.96-.267,1.98-.399,3-.404,1.02,.005,2.04,.137,3,.404,2.289-1.553,3.295-1.23,3.295-1.23,.653,1.649.242,2.873.119,3.176.77,.84,1.235,1.909,1.235,3.221,0,4.61-2.807,5.624-5.479,5.921,.43,.372,.823,1.102,.823,2.222,0,1.606-.014,2.896-.014,3.286,0,.322,.216,.694,.825,.576,4.765-1.587,8.2-6.084,8.2-11.387,0-6.627-5.373-12-12-12Z"/></svg>
+                GitHub
+              </a>
+            </div>
+         </div>
+         <div class="mt-3 px-1 text-gray-400 text-sm font-medium">${proj.desc.slice(0,54)}...</div>
+      `;
+      projectGrid.appendChild(card);
+    });
+
+    // Keyboard accessibility for tooltip
+    setTimeout(function() {
+      document.querySelectorAll('.project-title').forEach(title => {
+        title.addEventListener('blur', function() {
+          this.nextElementSibling.style.opacity = 0;
+        });
+        title.addEventListener('focus', function() {
+          this.nextElementSibling.style.opacity = 1;
+        });
+      });
+    }, 500);
+
+    // Render Work Experience
+    const workList = document.getElementById('work-exp-list');
+    workExp.forEach(exp => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'glass p-6 rounded-2xl shadow-lg';
+      wrapper.innerHTML = `
+        <h4 class="text-2xl font-semibold text-white mb-2">${exp.company}</h4>
+        <p class="text-gray-400 mb-2 italic">Role: ${exp.role} | Duration: ${exp.duration}</p>
+        <ul class="list-disc pl-6 text-gray-300 text-sm space-y-1">
+          ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      `;
+      workList.appendChild(wrapper);
+    });
+
+    // Render Skills
+    const skillsGrid = document.getElementById('skills-grid');
+    skills.forEach(sk => {
+      const box = document.createElement('div');
+      box.className = 'glass text-center py-3 rounded-xl text-[1rem] font-semibold hover:bg-blue-500 hover:text-white transition shadow hover:scale-105';
+      box.innerText = sk;
+      skillsGrid.appendChild(box);
+    });
+  </script>
+</body>
+</html>
